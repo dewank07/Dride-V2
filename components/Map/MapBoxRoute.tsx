@@ -11,17 +11,18 @@ import Map, {
 } from "react-map-gl";
 
 function MapBoxRoute(props: any) {
-  console.log(props?.coordinates)
+  console.log(props?.coordinates);
   return (
     <Source
-      type="geojson"
+      type='geojson'
       data={{
         type: "Feature",
+        properties: {}, // Add an empty properties object
         geometry: { type: "LineString", coordinates: props.coordinates },
       }}
     >
       <Layer
-        type="line"
+        type='line'
         layout={{ "line-join": "round", "line-cap": "square" }}
         paint={{ "line-color": "#0462d4", "line-width": 4 }}
       />
