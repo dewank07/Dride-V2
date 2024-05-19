@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^5.0.12",
     "@next/swc-darwin-arm64": "^14.2.3",
     "@types/mapbox-gl": "^3.1.0",
+    "ethers": "^6.12.1",
     "mapbox-gl": "^3.3.0",
     "next": "14.2.3",
     "react": "^18",
