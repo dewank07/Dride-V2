@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import Logo from './Logo';
 import { UserButton } from '@clerk/nextjs';
@@ -5,7 +6,7 @@ import ConnectWallet from './ConnectWallet';
 
 function Navbar() {
   return (
-    <div className='flex justify-between p-3 px-10 border-b-[1px] shadow-sm '>
+    <div className='flex justify-between p-3 px-4 md:px-10 border-b-[1px] shadow-sm '>
         <div className='flex gap-10 items-center'>
         <div>
             <Logo/>
