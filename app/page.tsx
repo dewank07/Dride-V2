@@ -44,12 +44,12 @@ export default function Home() {
       <DestinationCoordinatesContext.Provider value={{destinationCoordinates,setDestinationCoordinates}}>
         <DirectionDataContext.Provider value={{directionData,setDirectionData}}>
     <div className="grid grid-cols-1 md:grid-cols-3">
-      {/* <div>
+      <div>
         <Booking/>
       </div>
       <div className="col-span-2 order-first md:order-last w-full">
         <MapBoxMap/>
-      </div> */}
+      </div>
       
     </div>
     </DirectionDataContext.Provider>
