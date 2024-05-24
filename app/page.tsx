@@ -5,18 +5,25 @@ import { DestinationCoordinatesContext } from "@/context/DestinationCoordinateCo
 import { DirectionDataContext } from "@/context/DirectionDataContext";
 import { SourceCoordinatesContext } from "@/context/SourceCoordinateContext";
 import { UserLocationContext } from "@/context/UserLocationContext";
-import { UserButton } from "@clerk/nextjs";
-import Image from "next/image";
+import { WalletAddressContext } from "@/context/WalletAddressContext";
 import { useEffect, useState } from "react";
 
 export default function Home() {
 
+  const [walletAddress, setWalletAddress] = useState<any>();
+
   const [userLocation, setUserLocation] = useState<any>();
 
   const [sourceCoordinates, setSourceCoordinates] = useState<any>();
-  const [destinationCoordinates, setDestinationCoordinates] = useState<any>();
+  const [destinationCoordinates, setDestinationCoordinates] = useState< any>();
 
   const [directionData, setDirectionData] = useState<any>();
+
+  
+
+
+  
+  
 
   useEffect(()=>{
     getUserLocation()
@@ -39,6 +46,7 @@ export default function Home() {
 
   return (
     <>
+    <WalletAddressContext.Provider value={{walletAddress, setWalletAddress}}>
     <UserLocationContext.Provider value={{userLocation, setUserLocation}}>
       <SourceCoordinatesContext.Provider value={{sourceCoordinates, setSourceCoordinates}}>
       <DestinationCoordinatesContext.Provider value={{destinationCoordinates,setDestinationCoordinates}}>
@@ -56,7 +64,7 @@ export default function Home() {
     </DestinationCoordinatesContext.Provider>
     </SourceCoordinatesContext.Provider>
     </UserLocationContext.Provider>
-
+    </WalletAddressContext.Provider>
     </>
   );
 }

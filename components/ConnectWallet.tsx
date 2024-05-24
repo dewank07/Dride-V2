@@ -1,5 +1,7 @@
 "use client"
-import { useEffect, useState } from "react";
+import { WalletAddressContext } from "@/context/WalletAddressContext";
+import { connect } from "http2";
+import { useContext, useEffect, useState } from "react";
 
 
 declare global {
@@ -14,9 +16,9 @@ function ConnectWallet() {
     // const [address, setAddress] = useState<string | null>(null);
 
     // const [errorMessaage, setErrorMessaage] = useState<any>(null);
-    const [defaultAccount, setDefaultAccount] = useState<any>(null);
+    const [walletAddress, setWalletAddress]= useState<any>(null);
     // const [userBalance, setUserBalance] = useState<any>(null);
-
+  console.log(WalletAddressContext)
   useEffect(()=>{
     getCurrentWallet()
     addWalletListener()
@@ -24,19 +26,18 @@ function ConnectWallet() {
 
   useEffect(()=>{
 
-  },[defaultAccount])
+  },[walletAddress])
 
 
     const handleConnect = async () => {
       if(typeof window != "undefined" && typeof window.ethereum != "undefined"){
-        if(!defaultAccount){
+        if(!walletAddress){
         try{
           const accounts = await window.ethereum?.request({method: "eth_requestAccounts"})
-          setDefaultAccount(accounts[0])
+          setWalletAddress(accounts[0])
           console.log(accounts[0])
         }catch(err){
-          console.
-          log(err)
+          console.log(err)
         }
       }
       }else{
@@ -46,10 +47,10 @@ function ConnectWallet() {
 
     const getCurrentWallet = async () => {
       if(typeof window != "undefined" && typeof window.ethereum != "undefined"){
-        if(!defaultAccount){
+        if(!walletAddress){
         try{
           const accounts = await window.ethereum?.request({method: "eth_accounts"})
-          setDefaultAccount(accounts[0])
+          setWalletAddress(accounts[0])
           console.log(accounts[0])
         }catch(err){
           console.
@@ -65,9 +66,9 @@ function ConnectWallet() {
       if(typeof window != "undefined" && typeof window.ethereum != "undefined"){
         window.ethereum.on('accountChanged', (accounts:any) =>{
           if (!accounts.length) {
-            defaultAccount(null)
+            setWalletAddress(null)
           }else{
-            defaultAccount(accounts[0])
+            setWalletAddress(accounts[0])
           console.log("Account changed")
           }
           
@@ -75,7 +76,7 @@ function ConnectWallet() {
         )
       }
       else{
-        defaultAccount(null)
+        setWalletAddress(null)
         console.log("Plase install metamask")
       }
     }
@@ -84,7 +85,7 @@ function ConnectWallet() {
     <div>
         <button onClick={handleConnect} className="px-2 p-[2px] font-semibold rounded-full bg-[#F4A424] text-white hover:shadow-sm hover:shadow-gray-400">
           {
-            defaultAccount?`${defaultAccount.substring(0,6)}...${defaultAccount.substring(38)}`:'Connect Wallet'
+            walletAddress?`${walletAddress.substring(0,6)}...${walletAddress.substring(38)}`:'Connect Wallet'
           }
         </button>
     </div>
