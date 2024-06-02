@@ -5,7 +5,11 @@ import { error } from "console";
 import Image from "next/image";
 import React, { useContext, useState } from "react";
 
-function Cards({ setDriverAddress }) {
+function Cards({
+  setDriverAddress,
+}: {
+  setDriverAddress: (address: string) => void;
+}) {
   const [activeIndex, setActiveIndex] = useState<any>();
   const { journeyCost } = useContext(WalletAddressContext);
 
