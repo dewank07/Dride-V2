@@ -4,7 +4,7 @@ import CarsList from "@/data/CarsList";
 import Image from "next/image";
 import React, { useContext, useState } from "react";
 
-function Cars() {
+function Cars({ setPriceOfCar }: { setPriceOfCar: (price: string) => void }) {
   const [selectedCar, setSelectedCar] = useState<any>();
   const { directionData, setDestinationChange } =
     useContext(DirectionDataContext);
@@ -27,6 +27,7 @@ function Cars() {
             key={index}
             onClick={() => {
               setSelectedCar(index);
+              setPriceOfCar(getCost(items.charges));
             }}
             className={`m-2 p-2 border-[1px] rounded-md w-fit hover:border-yellow-400 cursor-pointer ${
               index == selectedCar ? "border-yellow-400 border-[2px]" : null

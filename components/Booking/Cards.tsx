@@ -7,8 +7,10 @@ import React, { useContext, useState } from "react";
 
 function Cards({
   setDriverAddress,
+  priceOfCar,
 }: {
   setDriverAddress: (address: string) => void;
+  priceOfCar: string;
 }) {
   const [activeIndex, setActiveIndex] = useState<any>();
   const { journeyCost } = useContext(WalletAddressContext);
@@ -18,8 +20,10 @@ function Cards({
       <h2 className='text-md font-semibold'>Payment</h2>
       <div className='grid grid-cols-3 gap-0 mt-2 pl-2'>
         <div className='text-md'>Total ride cost :</div>
-        {true ? (
-          <div className='font-semibold text-right col-span-2'>{0.07} eth</div>
+        {priceOfCar.length > 0 ? (
+          <div className='font-semibold text-right col-span-2'>
+            {priceOfCar} eth
+          </div>
         ) : (
           "0.0 eth"
         )}

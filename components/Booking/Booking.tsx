@@ -7,6 +7,7 @@ import { WalletAddressContext } from "@/context/WalletAddressContext";
 function Booking() {
   const [driverAddress, setDriverAddress] = useState<string>("");
   const { walletAddress } = useContext(WalletAddressContext);
+  const [priceOfCar, setPriceOfCar] = useState<string>("");
 
   const sendTransaction = async () => {
     const params = [
@@ -32,8 +33,8 @@ function Booking() {
       <h2 className='text-xl font-semibold'>Booking</h2>
       <div className='border-[1px] p-5 rounded-md h-full'>
         <AutocompleteAddress />
-        <Cars />
-        <Cards setDriverAddress={setDriverAddress} />
+        <Cars setPriceOfCar={setPriceOfCar} />
+        <Cards setDriverAddress={setDriverAddress} priceOfCar={priceOfCar} />
         <button
           className='w-full  bg-yellow-400 p-1 rounded-md mt-4'
           onClick={sendTransaction}
